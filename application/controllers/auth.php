@@ -14,9 +14,7 @@ class Auth extends CI_Controller {
      */
     private function _init() {	
 	$this->output->set_template('default');
-	$this->load->js('assets/themes/default/js/jquery-1.9.1.min.js');
-	$this->load->js('assets/themes/default/js/jquery-ui-1.8.16.custom.min.js');
-	$this->load->js('assets/themes/default/js/script.js');
+
         $this->load->css('assets/themes/default/css/stylesheet.css');
     }
 
