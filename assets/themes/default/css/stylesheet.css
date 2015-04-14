@@ -87,46 +87,39 @@ h3{
 
 /*//----------------------------------------------------->> ABOUT US / WHAT WE DO*/
 
-#info{
-
+.text{
+    -webkit-column-count: 3;
+    color: #445878;
 }
 
 #about{
-    width: 700px;
+    //width: 700px;
     text-align: center;
+    color: #445878;
 }
 
 
 /*//----------------------------------------------------->> PROJECTS*/
 
-#projects{
+.projects{
     background-color: #445878;
     color: white;
+    
 }
-#project1 h3{
+h3{
     color: #e98f00;
 }
-#project1{
+.project{
     width: 350px;
     text-align: center;
-    border-style: solid;
-    border-color: #e98f00;
-    border-bottom-width: 2px;
-    border-radius: 20px;
-    background-color: white;
-    color: #e98f00;
-    padding: 10px 10px 10px 10px;
-   
+    color: white;
+    padding: 10px 10px 10px 10px; 
 }
 
-#project2{
-    width: 350px;
-    text-align: center;
-    border-style: solid;
-    border-color: #e98f00;
-    border-bottom-width: 2px;
-    border-radius: 20px;
-    background-color: white;
-    color: #e98f00;
-    padding: 10px 10px 10px 10px;
+.thumb{
+    border-radius: 15px 50px 30px;
+}
+
+.gallery{
+  
 }
