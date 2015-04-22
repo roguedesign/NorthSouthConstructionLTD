@@ -120,6 +120,24 @@ h3{
     border-radius: 15px 50px 30px;
 }
 
-.gallery{
+#contact{
+  background-color: #445878;
   
+}
+#contact p{
+    color: white;
+}
+
+.form-group .control-label {
+    color: white;
+    font-family: Dosis;
+    font-style: normal;
+}
+
+.form-group{
+    font-family: Dosis;
+}
+
+.form-group .btn btn-primary{
+    color: #e98f00;
 }

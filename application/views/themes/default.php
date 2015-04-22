@@ -9,21 +9,13 @@
 	<meta name="author" content="Amy Munro" />
         
 	<?php require 'application/views/head.php'; ?>
-        <!--FONTS -->
+
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="assets/themes/default/font-awesome/css/font-awesome.min.css" type="text/css">
 
         <link href='http://fonts.googleapis.com/css?family=Dosis:300,400,700' rel='stylesheet' type='text/css'>
         
-        <!--STYLES-->
-        <link rel='stylesheet' href='assets/themes/default/css/bootstrap.css' type="text/css" >
-        <link rel='stylesheet' href='assets/themes/default/css/bootstrap.min.css' type='text/css' >
-        <link rel="stylesheet" href="assets/themes/default/css/creative.css" type="text/css" >
-        
-        <!--PLUGINS-->
-        <link rel="stylesheet" href="assets/themes/default/css/animate.min.css" type="text/css" >
-        <link rel="stylesheet" href="assets/themes/default/css/lightbox.css" type="text/css" >
     </head>
     <body id="page-top">
         
@@ -58,7 +50,7 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <h1 id="namewhite">NORTH<strong> SOUTH</strong><strong id="nameorange">CONSTRUCTION</strong></h1>
+                <h1 id="namewhite">NORTH<strong> SOUTH</strong><strong id="nameorange"> CONSTRUCTION</strong></h1>
                 <hr>
                 <p>dealing in construction and architecture for over 10 years</p>
             </div>
@@ -243,8 +235,57 @@
                     <p>Ready to start your next project with us? That's great! Give us an email and we will get back to you as soon as possible!</p>
                 </div>
                 <div class="col-lg-4 col-lg-offset-2 text-center">
+                    <?php $attributes = array("class" => "form-horizontal", "name" => "contact");
+            echo form_open("contact", $attributes);?>
+            <fieldset>
+            
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label for="name" class="control-label">NAME</label>
+                </div>
+                <div class="col-md-12">
+                    <input class="form-control" name="name" placeholder="Name" type="text" value="<?php echo set_value('name'); ?>" />
+                    <span class="text-danger"><?php echo form_error('name'); ?></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label for="email" class="control-label">EMAIL</label>
+                </div>
+                <div class="col-md-12">
+                    <input class="form-control" name="email" placeholder="Email" type="text" value="<?php echo set_value('email'); ?>" />
+                    <span class="text-danger"><?php echo form_error('email'); ?></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label for="message" class="control-label">MESSAGE</label>
+                </div>
+                <div class="col-md-12">
+                    <textarea class="form-control" name="message" rows="4" placeholder="Message"><?php echo set_value('message'); ?></textarea>
+                    <span class="text-danger"><?php echo form_error('message'); ?></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input name="submit" type="submit" class="btn btn-primary" value="Send" />
+                </div>
+            </div>
+            </fieldset>
+            <?php echo form_close(); ?>
+            <?php echo $this->session->flashdata('msg'); ?>
+                    
+                    
                     
                 </div>
+                
+                
+               
+                
+                
                 <div class="col-lg-4 text-center">
                     
                 </div>
@@ -255,16 +296,6 @@
 
         
           
-        <script src="assets/themes/default/js/jquery-1.11.0.min.js"></script>
-	<script src="assets/themes/default/js/lightbox.min.js"></script>
-        <script src='assets/themes/default/js/bootstrap.js'></script>
-        <script src='assets/themes/default/js/bootstrap.min.js'></script>
-        <script src="assets/themes/default/js/cbpAnimatedHeader.js"></script>
-        <script src="assets/themes/default/js/classie.js"></script>
-        <script src="assets/themes/default/js/creative.js"></script>
-        <script src="assets/themes/default/js/jquery.easing.min"></script>
-        <script src="assets/themes/default/js/jquery.fittext.js"></script>
-        <script src="assets/themes/default/js/jquery.js"></script>
-        <script src="assets/themes/default/js/wow.min.js"></script>
+        
     </body>
 </html>
