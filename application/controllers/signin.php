@@ -1,14 +1,19 @@
-<?php if (!defined('BASEPATH'))exit('No direct script access allowed');
+<?php
 
-class Home extends CI_Controller{
+class Signin extends CI_Controller {
+    
+    protected $username = 'admin';
+    protected $password = 'admin';
+            
     
     function __construct() {
 	parent::__construct();
 	$this->load->helper('url');
         $this->load->helper('form');
+        $this->load->library('form_validation');
     }
-    
-private function _init() {	
+    private function _init() {	
+        
 	$this->output->set_template('default');
 
         $this->load->css('assets/themes/default/css/stylesheet.css');
@@ -34,9 +39,33 @@ private function _init() {
         $this->load->js("assets/themes/default/js/wow.min.js");
     }
     
-    public function index() {
-	$this->_init();
-	$this->load->view('pages/home');
-    }
+    function index(){
+        $this->_init();
+        $this->load->view('pages/projects');
+        
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|xxs_clean|callback_alpha_space_only');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|valid_password');
+        
+        
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('pages/projects'); 
+            $username = 'admin';
+            $password = 'admin';
+        }
+        else {
+           
+            
+            $username = $this->input->post('username') &&
+            $password = $this->input->post('password') === TRUE;
+            {
+               redirect('pages/projects.php');
+            }
+            
+                $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">There has been an error sending this enquiry. Please try again later!</div>');
+                redirect('index.php#contact');
+        }
+        
+        
+        }
+    
 }
-
