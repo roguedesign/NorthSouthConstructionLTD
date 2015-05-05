@@ -1,52 +1,3 @@
-<!DOCTYPE html>
-<html>
-    <head>
-	<title><?php echo $title; ?></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-	<meta name="description" content="TODO List - sample application for NetBeans IDE" />
-	<meta name="keywords" content="NetBeans, PHP" />
-	<meta name="author" content="Amy Munro" />
-        
-	
-
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="assets/themes/default/font-awesome/css/font-awesome.min.css" type="text/css">
-
-        <link href='http://fonts.googleapis.com/css?family=Dosis:300,400,700' rel='stylesheet' type='text/css'>
-        
-    </head>
-    <body id="page-top">
-        
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">North South Construction LTD</a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a class="page-scroll" href="#about">ABOUT</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#portfolio">PROJECT</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">CONTACT</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-  
     <header>
         <div class="header-content">
             <div class="header-content-inner">
@@ -236,66 +187,182 @@
                 </div>
                 <div class="col-lg-4 col-lg-offset-2 text-center">
                     <?php $attributes = array("class" => "form-horizontal", "name" => "contact");
-            echo form_open("contact", $attributes);?>
-            <fieldset>
-            
-            <div class="form-group">
-                <div class="col-md-12">
-                    <label for="name" class="control-label">NAME</label>
-                </div>
-                <div class="col-md-12">
-                    <input class="form-control" name="name" placeholder="Name" type="text" value="<?php echo set_value('name'); ?>" />
-                    <span class="text-danger"><?php echo form_error('name'); ?></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    <label for="email" class="control-label">EMAIL</label>
-                </div>
-                <div class="col-md-12">
-                    <input class="form-control" name="email" placeholder="Email" type="text" value="<?php echo set_value('email'); ?>" />
-                    <span class="text-danger"><?php echo form_error('email'); ?></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    <label for="message" class="control-label">MESSAGE</label>
-                </div>
-                <div class="col-md-12">
-                    <textarea class="form-control" name="message" rows="4" placeholder="Message"><?php echo set_value('message'); ?></textarea>
-                    <span class="text-danger"><?php echo form_error('message'); ?></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    <input name="submit" type="submit" class="btn" value="Send" />
-                </div>
-            </div>
-            </fieldset>
-            <?php echo form_close(); ?>
-            <?php echo $this->session->flashdata('msg'); ?>
+                    echo form_open("contact", $attributes);?>
                     
-                    
-                    
+                    <fieldset>
+                        
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label for="name" class="control-label">NAME</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input class="form-control" name="name" placeholder="Name" type="text" value="<?php echo set_value('name'); ?>" />
+                            <span class="text-danger"><?php echo form_error('name'); ?></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label for="email" class="control-label">EMAIL</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input class="form-control" name="email" placeholder="Email" type="text" value="<?php echo set_value('email'); ?>" />
+                            <span class="text-danger"><?php echo form_error('email'); ?></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label for="message" class="control-label">MESSAGE</label>
+                        </div>
+                        <div class="col-md-12">
+                            <textarea class="form-control" name="message" rows="4" placeholder="Message"><?php echo set_value('message'); ?></textarea>
+                            <span class="text-danger"><?php echo form_error('message'); ?></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input name="submit" type="submit" class="btn" value="Send" />
+                        </div>
+                    </div>
+                    </fieldset>
+                    <?php echo form_close(); ?>
+                    <?php echo $this->session->flashdata('msg'); ?>    
                 </div>
-                
-                
-               
-                
                 
                 <div class="col-lg-4 text-center">
+                    <br/><p>N<br/>
+                    <img src="assets/themes/default/images/compasswhite.png" alt=''><br/>S</p>
+                    <h2 id="namewhite"><strong>NORTH SOUTH</strong><br/><strong id="nameorange">CONSTRUCTION</strong>
+                    </h2>
+                    <a href='#openModal'><p>- admin -</p></a>
+                </div>
                     
+                <div class='container'>
+                    <div class='row'>
+                    <div id='openModal' class='modalDialog' >
+                        <div class="col-lg-4  text-center">
+                            
+                            <?php
+                            //success message
+                            if ($this->session->flashdata('error')):
+                                ?>
+                                <div class="alert alert-error" role="alert"><?php echo $this->session->flashdata('error'); ?></div>
+                            <?php endif; ?>
+                            <?php echo validation_errors(); ?>
+                            <?php echo form_open('auth/validate_user'); ?>
+                    
+                    <h1>LOGIN</h1>
+                                <fieldset style="background-color: #445878;">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label for="username" class="control-label">USERNAME</label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <input class="form-control" name="username" placeholder="Username" type="text" value="<?php echo set_value('username'); ?>"/>
+                                            <span class="text-danger"><?php echo form_error('username'); ?></span>
+                                        </div>
+                                    </div>
+
+                                   <div class="form-group">
+                                        <div class="col-md-12"><br/>
+                                            <label for="password" class="control-label">PASSWORD</label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <input class="form-control" name="password" placeholder="Password" type="text" value="<?php echo set_value('password'); ?>"/>
+                                            <span class="text-danger"><?php echo form_error('password'); ?></span>            
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12"><br/>
+                                            <input name="submit" type="submit" class="btn" value="Login" />
+                                            
+                                            <a href='index.php#contact'><p>- close -</p></a>
+                                        </div>
+                                    </div>
+                                </fieldset>    
+                            <?php echo form_close(); ?>
+                            <?php echo "Don't have an account? ".anchor('index.php#openModalSignUp', "Create an account."); ?>   
+                            <?php echo $this->session->flashdata('msg'); ?>
+                        </div>
+                    </div>
+                   </div>
+                </div>
+                
+                <div class='container'>
+                    <div class='row'>
+                    <div id='openModalSignUp' class='modalDialog' >
+                        <div class="col-lg-4  text-center">
+                            <h1>CREATE AN ACCOUNT</h1>
+                            
+                            <?php
+                           
+                            if ($this->session->flashdata('error')):
+                                ?>
+                                <div class="alert alert-error" role="alert"><?php echo $this->session->flashdata('error'); ?></div>
+                            <?php endif; ?>
+                            <?php echo validation_errors('<div class="alert alert-error">', "</div>"); ?>
+                                <?php echo form_open('auth/create_user'); ?>
+                                
+                            <fieldset>  
+                                <div class="form-group">
+                                    <div class="col-md-12"><br/>
+                                        <label for="first_name" class="control-label">FIRST NAME</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input class="form-control" name="first_name" placeholder="First Name" type="text" value="<?php echo set_value('first_name')?> "/>
+                                        <span class="text-danger"><?php echo form_error('first_name'); ?></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-md-12"><br/>
+                                        <label for="last_name" class="control-label">LAST NAME</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input class="form-control" name="last_name" placeholder="Last Name" type="text" value="<?php echo set_value('last_name')?> "/>
+                                        <span class="text-danger"><?php echo form_error('last_name'); ?></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12"><br/>
+                                        <label for="last_name" class="control-label">USERNAME</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input class="form-control" name="username" placeholder="Username" type="text" value="<?php echo set_value('username')?> "/>
+                                        <span class="text-danger"><?php echo form_error('username'); ?></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12"><br/>
+                                        <label for="password" class="control-label">PASSWORD</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input class="form-control" name="password" placeholder="Password" type="text" value="<?php echo set_value('password')?> "/>
+                                        <span class="text-danger"><?php echo form_error('password'); ?></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12"><br/>
+                                        <label for="password2" class="control-label">CONFIRM PASSWORD</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input class="form-control" name="password2" placeholder="Confirm Password" type="text" value="<?php echo set_value('password2')?> "/>
+                                        <span class="text-danger"><?php echo form_error('password2'); ?></span>
+                                    </div>
+                                </div>
+                               
+                                  <br/>  <?php echo form_submit(array('name' => 'save', 'class' => 'btn', 'value' => 'CREATE')); ?>
+                   
+                            </fieldset>
+                                <?php echo form_close(); ?>
+                                <?php echo $this->session->flashdata('msg'); ?>
+                             <a href='index.php#contact'><p>- close -</p></a>
+                        </div>
+                    </div>
+                   </div>
                 </div>
             </div>
         </div>
     </section>
-
-
-        
-          
-        
-    </body>
-</html>

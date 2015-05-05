@@ -153,6 +153,9 @@ h3{
 #nameorange{
     color: #e98f00;
 }
+.modalDialog h1{
+    color: #e98f00;
+}
 
 .modalDialog {
 	position: fixed;

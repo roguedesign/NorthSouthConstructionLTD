@@ -79,7 +79,7 @@ aside {
 .navbar-default {
     border-color: rgba(34,34,34,.05);
     font-family: 'Dosis', 'Open Sans', Arial, sans-serif;
-    background-color: #fff;
+    background-color: grey;
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
