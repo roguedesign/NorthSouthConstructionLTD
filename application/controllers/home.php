@@ -45,11 +45,7 @@ private function _init() {
 	$this->load->view('pages/home');
     }
     
-    public function login() {
-	$this->_init();
-	$this->load->helper('form');
-	$this->load->view('pages/projects');
-    }
+
     
 
     /**
@@ -123,7 +119,7 @@ private function _init() {
 	    if ($this->User->insert_obj() != null) {
 		$this->_do_login();
 		$this->session->set_flashdata('success', 'Account successfully created.');
-		redirect($this->load->view('pages/projects'), 'refresh');
+		redirect('projects', 'refresh');
 	    } else {
 		$this->session->set_flashdata('error', 'An error occurred and the account was not created.');
 		redirect('index.php#openModalSignUp');

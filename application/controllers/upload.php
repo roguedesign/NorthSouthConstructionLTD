@@ -19,6 +19,14 @@ class Uploads extends CI_Controller {
         $config['max_width'] = 1024;
         
         $this->load->library('upload', $config);
+        if( !$this->upload->do_upload()){
+            $error = array('error' => $this->upload->display_errors());
+           redirect('project');
+        }
+        else {
+            $data = array('upload_data' => $this->upload->data());
+            redirect('project');
+        }
     }
 }
 

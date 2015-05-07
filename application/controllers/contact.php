@@ -40,7 +40,7 @@ class Contact extends CI_Controller {
     
     function index(){
         $this->_init();
-        $this->load->view('pages/home');
+        
         
         $this->form_validation->set_rules('name', 'Name', 'trim|required|xxs_clean|callback_alpha_space_only');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
@@ -77,7 +77,7 @@ class Contact extends CI_Controller {
             $this->email->message($message);
             if ($this->email->send()) {
                 $this->session->set_flashdata('msg', '<div class="alert alert-success text-center">Your enquiry has been sent successfully!</div>');
-                redirect('index.php#contact');
+                redirect('pages/home#contact');
             }
             else {
                 $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">There has been an error sending this enquiry. Please try again later!</div>');

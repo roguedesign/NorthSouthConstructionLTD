@@ -4,9 +4,27 @@ class Project extends MY_Model {
     
     public $id;  
    
-    public $title;
+
+    
+    
+      
+    public $priority;
+      
+
+     
+   
+    
+    public $last_modified_on;
+    
+    public $project_name;
     
     public $description;
     
-    public $deleted;  
+    public $project_category;
+    
+
+    
+    public $deleted;
+    
+    
 }

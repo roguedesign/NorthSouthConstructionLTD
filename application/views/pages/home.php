@@ -236,8 +236,8 @@
                     <img src="assets/themes/default/images/compasswhite.png" alt=''><br/>S</p>
                     <h2 id="namewhite"><strong>NORTH SOUTH</strong><br/><strong id="nameorange">CONSTRUCTION</strong>
                     </h2>
-                    <a href='#openModal'><p>- admin -</p></a>
-                </div>
+                    
+                </div> 
                     
                 <div class='container'>
                     <div class='row'>

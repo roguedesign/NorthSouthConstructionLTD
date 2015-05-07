@@ -88,11 +88,11 @@ class Auth extends CI_Controller {
     /**
      * DISPLAY LOGIN
      */
-    public function login() {
-	$this->_init();
-	$this->load->helper('form');
-	$this->load->view('pages/projects');
-    }
+//    public function login() {
+//	$this->_init();
+//	$this->load->helper('form');
+//	$this->load->view('pages/projects');
+//    }
     
 
     /**
@@ -116,7 +116,7 @@ class Auth extends CI_Controller {
 	if ($this->User->validate()) {
 	    $this->_do_login();
             if(!$is_ajax){
-                redirect('auth');
+                redirect('projects');
             }
 	} else { 
 	    $this->session->set_flashdata('error', 'Incorrect username and/or password. Please try again.');
@@ -133,7 +133,7 @@ class Auth extends CI_Controller {
 	    'is_logged_in' => true
 	);
 	$this->session->set_userdata($data);
-	redirect($this->load->view('pages/projects'));
+	redirect('projects');
     }  
 //    
 
@@ -143,7 +143,7 @@ class Auth extends CI_Controller {
     public function create_user() {
         
 	$this->load->library('form_validation');
-        //$this->load->view('pages/projects');
+        $this->load->view('pages/projects');
 	//validate 
 	$this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
 	$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
@@ -173,4 +173,7 @@ class Auth extends CI_Controller {
 	    }
 	}
     }
+    
+    
+    
 }

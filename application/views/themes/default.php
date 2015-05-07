@@ -26,7 +26,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">North South Construction LTD</a>
+                <a class="navbar-brand page-scroll" href="index.php/#page-top">North South Construction LTD</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -39,6 +39,9 @@
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">CONTACT</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#openModal">ADMIN</a>
                     </li>
                 </ul>
             </div>
