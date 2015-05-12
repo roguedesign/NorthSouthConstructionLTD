@@ -165,12 +165,13 @@ class MY_Model extends CI_Model
     /**
      * Save the record.
      */
-    public function save($id = null) {
-        if (isset($id)) {
-            $this->update_obj($id);
+    public function save($data, $id = null) {
+        if ($id != null) {
+            $this->update($id, $data);
+            return null;
         }
         else {
-            $this->insert_obj();
+            $this->insert($data);
         }
     }
     

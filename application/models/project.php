@@ -8,13 +8,13 @@ class Project extends MY_Model {
     
     
       
-    public $priority;
+    
       
 
      
    
     
-    public $last_modified_on;
+    
     
     public $project_name;
     
@@ -24,7 +24,7 @@ class Project extends MY_Model {
     
 
     
-    public $deleted;
+   
     
     
 }

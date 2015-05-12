@@ -52,7 +52,7 @@ class Projects extends CI_Controller {
                 $row->project_category,
 		$row->description,
 		
-		anchor('projects/add_edit/'.$row->id,'Edit').' | '.anchor('projects/delete/'.'/'.$row->id,'Delete'),
+		anchor('projects/add_edit/'.$row->id,'EDIT').' | '.anchor('projects/delete/'.'/'.$row->id,'DELETE'),
 	    );
 	}
 	
@@ -62,60 +62,61 @@ class Projects extends CI_Controller {
 	));
     }
     
-    public function create_project() {
-        
-	$this->load->library('form_validation');
-        //$this->load->view('pages/projects');
-	//validate 
-	$this->form_validation->set_rules('name_of_job', 'Job Name', 'trim|required');
-	$this->form_validation->set_rules('category', 'Category', 'trim|required');
-	
-	
-
-	if ($this->form_validation->run() == FALSE) {
-	    $this->load->view('pages/projects');
-	} else {
-	    
-	    $this->load->model('Project');
-	    $this->Project->name_of_job = $this->input->post('name_of_job');
-	    $this->Project->category = $this->input->post('category');
-
-	    
-	    if ($this->Project->insert_obj() != null) {
-		$this->create_project();
-		$this->session->set_flashdata('success', 'Project Sucessfully Added!');
-		redirect('pages/projects');
-	    } else {
-		$this->session->set_flashdata('error', 'An error occurred and the Project was not created.');
-		redirect('pages/projects');
-	    }
-	}
-    }
+//    public function create_project() {
+//        
+//	$this->load->library('form_validation');
+//        //$this->load->view('pages/projects');
+//	//validate 
+//	$this->form_validation->set_rules('job_name', 'Job Name', 'trim|required');
+//	$this->form_validation->set_rules('job_category', 'Job Category', 'trim|required');
+//        $this->form_validation->set_rules('description', 'Description', 'trim|required');
+//	
+//	
+//
+//	if ($this->form_validation->run() == FALSE) {
+//	    $this->load->view('pages/projects');
+//	} else {
+//	    
+//	    $this->load->model('Project');
+//	    $this->Project->name_of_job = $this->input->post('name_of_job');
+//	    $this->Project->category = $this->input->post('category');
+//
+//	    
+//	    if ($this->Project->insert_obj() != null) {
+//		$this->create_project();
+//		$this->session->set_flashdata('success', 'Project Sucessfully Added!');
+//		redirect('pages/projects');
+//	    } else {
+//		$this->session->set_flashdata('error', 'An error occurred and the Project was not created.');
+//		redirect('pages/projects');
+//	    }
+//	}
+//    }
         public function do_upload() {
-        $config['upload_path'] = '../uploads/';
+        $config['upload_path'] = './uploads';
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = 100;
-        $config['max_height'] = 768;
+        $config['max_size'] = 10000;
+        $config['max_height'] = 2000;
         $config['max_width'] = 1024;
         $config['is_image'] = 1;
         
         $this->load->library('upload', $config);
-        if( !$this->upload->do_upload()){
+        if( !$this->upload->do_upload('userfile')){
             $data = array('upload_data' => $this->upload->data());
-            redirect('projects');
+            
         }
-        else {
-            $error = array('error' => $this->upload->display_errors());
-            redirect('projects');
-        }
+//        else {
+//            //$error = array('error' => $this->upload->display_errors());
+//            //redirect('projects');
+//        }
     }
     
     
     public function add_edit($id = null) {
-        
+        $this->_init();
 	$this->load->helper('form');
 	$this->load->model('Project');
-	$project = new Projects();
+	$project = new Project();
 
 	//is add/edit
 	if (!$this->input->post()) {
@@ -125,12 +126,17 @@ class Projects extends CI_Controller {
 		$this->load->model('Project');
 		$project = $this->Project->get($id);
 	    }
+            else {
+                $project->project_name = '';
+                $project->project_category = '';
+                $project->description = '';
+            }
 	    $this->load->view('pages/add-edit', array(
 		'edit' => $id != null,
 		'project' => $project,
 	    ));
 	} else {//if is insert/update
-	    $this->_insert_update($project, $id);
+	    $this->insert_update($id);
 	}
     }
     
@@ -142,14 +148,15 @@ class Projects extends CI_Controller {
 	$this->session->set_flashdata('error', 'There was a problem deleting the Project. Please try again.');	
     }
     //take back to list
-    redirect('/projects/status/'.$status, 'refresh');
+    redirect('projects', 'refresh');
     }
     
-    private function _insert_update($project, $id) {
+    private function insert_update($id) {
+        $data = array();
 	//populate from post
-	$project->project_name = $this->input->post('project_name');
-        $project->project_category = $this->input->post('project_category');
-	$project->description = $this->input->post('description');
+	$data['project_name'] = $this->input->post('project_name');
+        $data['project_category'] = $this->input->post('project_category');
+	$data['description'] = $this->input->post('description');
 
 
 	// validation
@@ -181,16 +188,15 @@ class Projects extends CI_Controller {
 		'project' => $project,
 	    ));
 	} else {//if validates
-	    $project->id = (int) $id;
-	    //hard-code a few values not in the form
-	    $project->priority = 1;
-	    $project->comment = "my comment";
-	    $project->created_on = "2015-01-01";
-	    $project->last_modified_on = "2015-01-01";
-	    $project->due_on = "2015-01-01";
-	    $project->status = "PENDING";
-	    $project->deleted = 0;
-	    $project->save($id);
+            //upload
+            if ($_FILES['userfile']['name']){
+            $this->do_upload();
+            }
+	    if ($id != null){
+                $data['id'] = $id;
+            }
+            $project = new Project();
+	    $project->save($data, $id);
 	    //add flash and redirect
 	    $action = "";
 	    if ($id == null) {
@@ -199,7 +205,7 @@ class Projects extends CI_Controller {
 		$action = "updated";
 	    }
 	    $this->session->set_flashdata('success', 'Project successfully ' . $action);
-	    redirect('/projects/status/' . strtolower($project->status), 'refresh');
+	    redirect('projects' , 'refresh');
 	}
     }
 }

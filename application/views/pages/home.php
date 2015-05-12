@@ -32,13 +32,20 @@
             </div>
         </div>
     </section>
-        
+
+   <!--looping the projects-->  
     <section class="no-padding" id="portfolio">
         <div class="container-fluid">
             <div class="row no-gutter">
-                <div class="col-lg-4 col-sm-6">
+                <!--project box-->
+                    <div class="col-lg-4 col-sm-6">
+                    <!--project main image--> 
                     <a href="assets/themes/default/images/house/houseview.jpg" data-lightbox="house" class="portfolio-box">
-                        <img src=assets/themes/default/images/house/houseview.jpg class="img-responsive" alt="">
+                    <img src=assets/themes/default/images/house/houseview.jpg class="img-responsive" alt="">
+                   
+                        
+                       
+                        <!--picture caption - project name, project category-->
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
@@ -50,6 +57,8 @@
                             </div>
                         </div>
                     </a>
+                    
+                    <!--images relating to project-->
                     <a href="assets/themes/default/images/house/housebathroom.jpg" data-lightbox="house"></a>
                     <a href="assets/themes/default/images/house/kitchen.jpg" data-lightbox="house"></a>
                     <a href="assets/themes/default/images/house/housebathroom3.jpg" data-lightbox="house"></a>

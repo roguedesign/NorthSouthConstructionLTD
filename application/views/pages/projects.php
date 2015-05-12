@@ -18,7 +18,7 @@
                             <div class="alert alert-danger" role="alert"><?php echo $this->session->flashdata('error'); ?></div>
                         <?php endif; ?>
                             <?php echo validation_errors(); ?>
-                        <?php echo form_open('projects/add_edit'); ?>
+                        <?php echo form_open_multipart('projects/add_edit'); ?>
                             <fieldset>
                                 <div class="form-group">
                                     <div class="col-md-12">
@@ -54,8 +54,8 @@
                                             <label for="upload" class="control-label" style="color:#445878">UPLOAD A PICTURE</label>
                                         </div>
                                         <div class="col-md-12">
-                                            <input class="form-control" size="20" name="userfile" type="file" /><br/>
-                                            <input type="submit" value="upload" class="btn" />
+                                            <input class="form-control"  name="userfile" type="file" /><br/>
+                                            
                                             <span class="text-danger"><?php echo form_error('upload'); ?></span>
                                             <?php echo form_close(); ?>
                                         </div>    
