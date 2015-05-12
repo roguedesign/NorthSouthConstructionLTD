@@ -140,7 +140,7 @@ class Projects extends CI_Controller {
 	}
     }
     
-    public function delete($status,$id) {
+    public function delete($id) {
 	$this->load->model('Project');
     if($this->Project->delete($id)){
 	$this->session->set_flashdata('success', 'Project successfully deleted.');
