@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined('BASEPATH'))exit('No direct script access allowed');
 if(!empty($meta))
 	foreach($meta as $name=>$content){
 		echo "\n\t\t";

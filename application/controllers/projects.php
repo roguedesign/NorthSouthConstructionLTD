@@ -1,4 +1,4 @@
-<?php
+<?php  if (!defined('BASEPATH'))exit('No direct script access allowed');
 
 class Projects extends CI_Controller {
     
@@ -11,27 +11,27 @@ class Projects extends CI_Controller {
     }
     private function _init() {	
         $this->output->set_template('default');
-        $this->load->css('assets/themes/default/css/stylesheet.css');
-        $this->load->css('assets/themes/default/css/bootstrap.css');
-        $this->load->css('assets/themes/default/css/bootstrap.min.css');
-        $this->load->css("assets/themes/default/css/creative.css");
+        $this->load->css(base_url().'assets/themes/default/css/stylesheet.css');
+        $this->load->css(base_url().'assets/themes/default/css/bootstrap.css');
+        $this->load->css(base_url().'assets/themes/default/css/bootstrap.min.css');
+        $this->load->css(base_url()."assets/themes/default/css/creative.css");
         
 //        PLUGINS
-        $this->load->css("assets/themes/default/css/animate.min.css");
-        $this->load->css("assets/themes/default/css/lightbox.css");
+        $this->load->css(base_url()."assets/themes/default/css/animate.min.css");
+        $this->load->css(base_url()."assets/themes/default/css/lightbox.css");
         
 //        JS
-        $this->load->js("assets/themes/default/js/jquery-1.11.0.min.js");
-	$this->load->js("assets/themes/default/js/lightbox.min.js");
-        $this->load->js('assets/themes/default/js/bootstrap.js');
-        $this->load->js('assets/themes/default/js/bootstrap.min.js');
-        $this->load->js("assets/themes/default/js/cbpAnimatedHeader.js");
-        $this->load->js("assets/themes/default/js/classie.js");
-        $this->load->js("assets/themes/default/js/creative.js");
-        $this->load->js("assets/themes/default/js/jquery.easing.min.js");
-        $this->load->js("assets/themes/default/js/jquery.fittext.js");
-        $this->load->js("assets/themes/default/js/jquery.js");
-        $this->load->js("assets/themes/default/js/wow.min.js");
+        $this->load->js(base_url()."assets/themes/default/js/jquery-1.11.0.min.js");
+	$this->load->js(base_url()."assets/themes/default/js/lightbox.min.js");
+        $this->load->js(base_url().'assets/themes/default/js/bootstrap.js');
+        $this->load->js(base_url().'assets/themes/default/js/bootstrap.min.js');
+        $this->load->js(base_url()."assets/themes/default/js/cbpAnimatedHeader.js");
+        $this->load->js(base_url()."assets/themes/default/js/classie.js");
+        $this->load->js(base_url()."assets/themes/default/js/creative.js");
+        $this->load->js(base_url()."assets/themes/default/js/jquery.easing.min.js");
+        $this->load->js(base_url()."assets/themes/default/js/jquery.fittext.js");
+        $this->load->js(base_url()."assets/themes/default/js/jquery.js");
+        $this->load->js(base_url()."assets/themes/default/js/wow.min.js");
 	
         
         
@@ -51,8 +51,9 @@ class Projects extends CI_Controller {
 		$row->project_name,
                 $row->project_category,
 		$row->description,
+                
 		
-		anchor('projects/add_edit/'.$row->id,'EDIT').' | '.anchor('projects/delete/'.'/'.$row->id,'DELETE'),
+		anchor(base_url().'projects/add_edit/'.$row->id,'EDIT').' | '.anchor(base_url().'projects/delete/'.'/'.$row->id,'DELETE'),
 	    );
 	}
 	
@@ -148,7 +149,7 @@ class Projects extends CI_Controller {
 	$this->session->set_flashdata('error', 'There was a problem deleting the Project. Please try again.');	
     }
     //take back to list
-    redirect('projects', 'refresh');
+    redirect(base_url().'projects', 'refresh');
     }
     
     private function insert_update($id) {
@@ -190,6 +191,7 @@ class Projects extends CI_Controller {
 	} else {//if validates
             //upload
             if ($_FILES['userfile']['name']){
+                $data['image_name'] = $_FILES['userfile']['name'];
             $this->do_upload();
             }
 	    if ($id != null){
@@ -205,7 +207,7 @@ class Projects extends CI_Controller {
 		$action = "updated";
 	    }
 	    $this->session->set_flashdata('success', 'Project successfully ' . $action);
-	    redirect('projects' , 'refresh');
+	    redirect(base_url().'projects' , 'refresh');
 	}
     }
 }

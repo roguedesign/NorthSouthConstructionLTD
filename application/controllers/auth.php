@@ -16,27 +16,27 @@ class Auth extends CI_Controller {
     private function _init() {	
 	$this->output->set_template('default');
 
-        $this->load->css('assets/themes/default/css/stylesheet.css');
-        $this->load->css('assets/themes/default/css/bootstrap.css');
-        $this->load->css('assets/themes/default/css/bootstrap.min.css');
-        $this->load->css("assets/themes/default/css/creative.css");
+        $this->load->css(base_url().'assets/themes/default/css/stylesheet.css');
+        $this->load->css(base_url().'assets/themes/default/css/bootstrap.css');
+        $this->load->css(base_url().'assets/themes/default/css/bootstrap.min.css');
+        $this->load->css(base_url()."assets/themes/default/css/creative.css");
         
 //        PLUGINS
-        $this->load->css("assets/themes/default/css/animate.min.css");
-        $this->load->css("assets/themes/default/css/lightbox.css");
+        $this->load->css(base_url()."assets/themes/default/css/animate.min.css");
+        $this->load->css(base_url()."assets/themes/default/css/lightbox.css");
         
 //        JS
-        $this->load->js("assets/themes/default/js/jquery-1.11.0.min.js");
-	$this->load->js("assets/themes/default/js/lightbox.min.js");
-        $this->load->js('assets/themes/default/js/bootstrap.js');
-        $this->load->js('assets/themes/default/js/bootstrap.min.js');
-        $this->load->js("assets/themes/default/js/cbpAnimatedHeader.js");
-        $this->load->js("assets/themes/default/js/classie.js");
-        $this->load->js("assets/themes/default/js/creative.js");
-        $this->load->js("assets/themes/default/js/jquery.easing.min.js");
-        $this->load->js("assets/themes/default/js/jquery.fittext.js");
-        $this->load->js("assets/themes/default/js/jquery.js");
-        $this->load->js("assets/themes/default/js/wow.min.js");
+        $this->load->js(base_url()."assets/themes/default/js/jquery-1.11.0.min.js");
+	$this->load->js(base_url()."assets/themes/default/js/lightbox.min.js");
+        $this->load->js(base_url().'assets/themes/default/js/bootstrap.js');
+        $this->load->js(base_url().'assets/themes/default/js/bootstrap.min.js');
+        $this->load->js(base_url()."assets/themes/default/js/cbpAnimatedHeader.js");
+        $this->load->js(base_url()."assets/themes/default/js/classie.js");
+        $this->load->js(base_url()."assets/themes/default/js/creative.js");
+        $this->load->js(base_url()."assets/themes/default/js/jquery.easing.min.js");
+        $this->load->js(base_url()."assets/themes/default/js/jquery.fittext.js");
+        $this->load->js(base_url()."assets/themes/default/js/jquery.js");
+        $this->load->js(base_url()."assets/themes/default/js/wow.min.js");
     }
 
     /**
@@ -45,46 +45,16 @@ class Auth extends CI_Controller {
     public function index() {
 	$this->_init();
 	$this->load->view('pages/home');
+        
+        $projects = $this->Project->get_all();
+         
+        $this->load->view('pages/home', array(
+	    
+	    'projects' => $projects,
+	));
     }
 
-//    public function contact() {
-//        
-//        
-//        $this->form_validation->set_rules('name', 'Name', 'trim|required|xxs_clean|callback_alpha_space_only');
-//        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-//        $this->form_validation->set_rules('message', 'Message', 'trim|required|xss_clean');
-//        
-//        if ($this->form_validation->run() == FALSE) {
-//            $this->load->view('home');
-//        }
-//        else {
-//            $name = $this->input->post('name');
-//            $from_email = $this->input->post('email');
-//            $message = $this->input->post('message');
-//            
-//            $to_email = 'BROMIE9@hotmail.com';
-//            
-//            $config['protocol'] = 'stmp';
-//            $config['stmp_host'] = 'ssl://smtp.live.com';
-//            $config['stmp_port'] = '587';
-//            $config['stmp_user'] = 'BROMIE9@hotmail.com';
-//            $config['stmp_password'] = '131301487';
-//            
-//            $this->email->initialize($config);
-//            
-//            $this->email->from($from_email, $name);
-//            $this->email->to($to_email);
-//            $this->email->message($message);
-//            if ($this->email->send('submit')) {
-//                $this->session->set_flashdata('msg', '<div class="alert alert-success text-center">Your enquiry has been sent successfully!</div>');
-//                redirect('index.php#contact');
-//            }
-//            else {
-//                $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">There hase been an error sending this enquiry. Please try again later!</div>');
-//                redirect('index.php#contact');
-//        }
-//        }
-//    }
+//    
     /**
      * DISPLAY LOGIN
      */
@@ -120,7 +90,7 @@ class Auth extends CI_Controller {
             }
 	} else { 
 	    $this->session->set_flashdata('error', 'Incorrect username and/or password. Please try again.');
-	    redirect('index.php#openModal', 'refresh');
+	    redirect(base_url().'pages/home#openModal', 'refresh');
 	}
     }
 
@@ -143,7 +113,7 @@ class Auth extends CI_Controller {
     public function create_user() {
         
 	$this->load->library('form_validation');
-        $this->load->view('pages/projects');
+        
 	//validate 
 	$this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
 	$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
@@ -161,7 +131,7 @@ class Auth extends CI_Controller {
 	    $this->User->last_name = $this->input->post('last_name');
 	    
 	    $this->User->username = $this->input->post('username');
-	    $this->User->password = md5($this->input->post('password'));
+	    $this->User->password = $this->input->post('password');
 	    //save new user
 	    if ($this->User->insert_obj() != null) {
 		$this->_do_login();
@@ -169,7 +139,7 @@ class Auth extends CI_Controller {
 		redirect($this->load->view('pages/projects'), 'refresh');
 	    } else {
 		$this->session->set_flashdata('error', 'An error occurred and the account was not created.');
-		redirect('index.php#openModalSignUp');
+		redirect(base_url().'pages/home#openModalSignUp');
 	    }
 	}
     }

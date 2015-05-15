@@ -1,4 +1,5 @@
-    <header>
+<?php if (!defined('BASEPATH'))exit('No direct script access allowed'); ?>    
+<header>
         <div class="header-content">
             <div class="header-content-inner">
                 <h1 id="namewhite">NORTH<strong> SOUTH</strong><strong id="nameorange"> CONSTRUCTION</strong></h1>
@@ -32,20 +33,41 @@
             </div>
         </div>
     </section>
-
-   <!--looping the projects-->  
+ 
     <section class="no-padding" id="portfolio">
         <div class="container-fluid">
             <div class="row no-gutter">
-                <!--project box-->
-                    <div class="col-lg-4 col-sm-6">
-                    <!--project main image--> 
+                <?php foreach ($projects as $project):?>
+                    
+                 
+                <div class="col-lg-4 col-sm-6">
+                    <a href="<?php echo base_url().'uploads/'.$project->image_name; ?>" data-lightbox="house" class="portfolio-box">
+                    <img src="<?php echo base_url().'uploads/'.$project->image_name; ?>" class="img-responsive" alt="">
+                        <!--picture caption - project name, project category-->
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    <?php echo $project->project_category; ?>
+                                </div>
+                                <div class="project-name">
+                                    <?php echo $project->project_name; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+<!--                    <a href="assets/themes/default/images/house/housebathroom.jpg" data-lightbox="house"></a>
+                    <a href="assets/themes/default/images/house/kitchen.jpg" data-lightbox="house"></a>
+                    <a href="assets/themes/default/images/house/housebathroom3.jpg" data-lightbox="house"></a>
+                    <a href="assets/themes/default/images/house/housedeck.jpg" data-lightbox="house"></a>
+                    <a href="assets/themes/default/images/house/houseside.jpg" data-lightbox="house"></a>
+                    <a href="assets/themes/default/images/house/houseside2.jpg" data-lightbox="house"></a>   
+                    <a href="assets/themes/default/images/house/kitchenview.jpg" data-lightbox="house"></a>-->
+                </div>
+                <?php endforeach; ?>
+<!--                <div class="col-lg-4 col-sm-6">
                     <a href="assets/themes/default/images/house/houseview.jpg" data-lightbox="house" class="portfolio-box">
                     <img src=assets/themes/default/images/house/houseview.jpg class="img-responsive" alt="">
-                   
-                        
-                       
-                        <!--picture caption - project name, project category-->
+                        picture caption - project name, project category
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
@@ -57,8 +79,6 @@
                             </div>
                         </div>
                     </a>
-                    
-                    <!--images relating to project-->
                     <a href="assets/themes/default/images/house/housebathroom.jpg" data-lightbox="house"></a>
                     <a href="assets/themes/default/images/house/kitchen.jpg" data-lightbox="house"></a>
                     <a href="assets/themes/default/images/house/housebathroom3.jpg" data-lightbox="house"></a>
@@ -69,8 +89,8 @@
                 </div>
                 
                 <div class="col-lg-4 col-sm-6">
-                    <a href="assets/themes/default/images/eqc/eqc1.jpeg" data-lightbox="bla" class="portfolio-box">
-                        <img src=assets/themes/default/images/eqc/eqc1.jpeg class="img-responsive" alt="">
+                    <a href="assets/themes/default/images/movie/movie1.jpg" data-lightbox="bla" class="portfolio-box">
+                        <img src=assets/themes/default/images/movie/movie1.jpg class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
@@ -82,36 +102,11 @@
                             </div>
                         </div>
                     </a>
-                    <a href="assets/themes/default/images/house/housebathroom.jpg" data-lightbox="bla" ></a>
-                    <a href="assets/themes/default/images/house/kitchen.jpg" data-lightbox="bla"></a>
-                    <a href="assets/themes/default/images/house/housebathroom3.jpg" data-lightbox="bla"></a>
-                    <a href="assets/themes/default/images/house/housedeck.jpg" data-lightbox="bla"></a>
-                    <a href="assets/themes/default/images/house/houseside.jpg" data-lightbox="bla"></a>
-                    <a href="assets/themes/default/images/house/houseside2.jpg" data-lightbox="bla"></a>   
-                    <a href="assets/themes/default/images/house/kitchenview.jpg" data-lightbox="bla"></a>
-                </div>
-                
-                <div class="col-lg-4 col-sm-6">
-                    <a href="assets/themes/default/images/house/houseview.jpg" data-lightbox="movie" class="portfolio-box">
-                        <img src=assets/themes/default/images/house/houseview.jpg class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    MOVIE
-                                </div>
-                                <div class="project-name">
-                                    MOVIE THEATER 
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="assets/themes/default/images/house/housebathroom.jpg" data-lightbox="sting" data-title="BATHROOM"></a>
-                    <a href="assets/themes/default/images/house/kitchen.jpg" data-lightbox="sting" data-title="KITCHEN"></a>
-                    <a href="assets/themes/default/images/house/housebathroom3.jpg" data-lightbox="sting" data-title="BATHROOM"></a>
-                    <a href="assets/themes/default/images/house/housedeck.jpg" data-lightbox="sting" data-title="DECKING"></a>
-                    <a href="assets/themes/default/images/house/houseside.jpg" data-lightbox="sting" data-title="SIDE"></a>
-                    <a href="assets/themes/default/images/house/houseside2.jpg" data-lightbox="sting" data-title="SIDE"></a>   
-                    <a href="assets/themes/default/images/house/kitchenview.jpg" data-lightbox="sting" data-title="KITCHEN VIEW"></a>
+                    <a href="assets/themes/default/images/movie/movie1.jpg" data-lightbox="bla" ></a>
+                    <a href="assets/themes/default/images/movie/movie2.jpg" data-lightbox="bla"></a>
+                    <a href="assets/themes/default/images/movie/movie3.jpg" data-lightbox="bla"></a>
+                    <a href="assets/themes/default/images/movie/movie4.jpg" data-lightbox="bla"></a>
+                    <a href="assets/themes/default/images/movie/movie5.jpg" data-lightbox="bla"></a>
                 </div>
                 
                 <div class="col-lg-4 col-sm-6">
@@ -161,6 +156,27 @@
                 </div>
                 
                 <div class="col-lg-4 col-sm-6">
+                    <a href="assets/themes/default/images/eqc/eqc4.jpeg" data-lightbox="sting" class="portfolio-box">
+                        <img src=assets/themes/default/images/eqc/eqc4.jpeg class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    EQC
+                                </div>
+                                <div class="project-name">
+                                    HOME EQC REPAIRS 
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="assets/themes/default/images/eqc/eqc1.jpeg" data-lightbox="sting" ></a>
+                    <a href="assets/themes/default/images/eqc/eqc2.jpeg" data-lightbox="sting" ></a>
+                    <a href="assets/themes/default/images/eqc/eqc3.jpeg" data-lightbox="sting"></a>
+                    <a href="assets/themes/default/images/eqc/eqc4.jpeg" data-lightbox="sting"></a>
+                    <a href="assets/themes/default/images/eqc/eqc5.jpeg" data-lightbox="sting"></a>
+                </div>
+                
+                <div class="col-lg-4 col-sm-6">
                     <a href="assets/themes/default/images/house/houseview.jpg" data-lightbox="sup" data-title="VIEW" class="portfolio-box">
                         <img src=assets/themes/default/images/house/houseview.jpg class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
@@ -181,7 +197,7 @@
                     <a href="assets/themes/default/images/house/houseside.jpg" data-lightbox="sup" data-title="SIDE"></a>
                     <a href="assets/themes/default/images/house/houseside2.jpg" data-lightbox="sup" data-title="SIDE"></a>   
                     <a href="assets/themes/default/images/house/kitchenview.jpg" data-lightbox="sup" data-title="KITCHEN VIEW"></a>
-                </div>
+                </div>-->
             </div>
         </div>
     </section>
@@ -195,8 +211,8 @@
                     <p>Ready to start your next project with us? That's great! Give us an email and we will get back to you as soon as possible!</p>
                 </div>
                 <div class="col-lg-4 col-lg-offset-2 text-center">
-                    <?php $attributes = array("class" => "form-horizontal", "name" => "contact");
-                    echo form_open("contact", $attributes);?>
+                    <?php $attributes = array("class" => "form-horizontal", "name" => "home"); 
+                    echo form_open("home/contact", $attributes);?>
                     
                     <fieldset>
                         
@@ -242,12 +258,12 @@
                 
                 <div class="col-lg-4 text-center">
                     <br/><p>N<br/>
-                    <img src="assets/themes/default/images/compasswhite.png" alt=''><br/>S</p>
+                    <img src="<?php echo base_url(); ?>assets/themes/default/images/compasswhite.png" alt=''><br/>S</p>
                     <h2 id="namewhite"><strong>NORTH SOUTH</strong><br/><strong id="nameorange">CONSTRUCTION</strong>
                     </h2>
                     
                 </div> 
-                    
+                  
                 <div class='container'>
                     <div class='row'>
                     <div id='openModal' class='modalDialog' >
@@ -260,7 +276,7 @@
                                 <div class="alert alert-error" role="alert"><?php echo $this->session->flashdata('error'); ?></div>
                             <?php endif; ?>
                             <?php echo validation_errors(); ?>
-                            <?php echo form_open('auth/validate_user'); ?>
+                            <?php echo form_open('home/validate_user'); ?>
                     
                     <h1>LOGIN</h1>
                                 <fieldset style="background-color: #445878;">
@@ -287,12 +303,12 @@
                                         <div class="col-md-12"><br/>
                                             <input name="submit" type="submit" class="btn" value="Login" />
                                             
-                                            <a href='index.php#contact'><p>- close -</p></a>
+                                            <a href='<?php echo base_url(); ?>home'><p>- close -</p></a>
                                         </div>
                                     </div>
                                 </fieldset>    
                             <?php echo form_close(); ?>
-                            <?php echo "Don't have an account? ".anchor('index.php#openModalSignUp', "Create an account."); ?>   
+                            <?php echo "Don't have an account? ".anchor(base_url().'home#openModalSignUp', "Create an account."); ?>   
                             <?php echo $this->session->flashdata('msg'); ?>
                         </div>
                     </div>
@@ -312,7 +328,7 @@
                                 <div class="alert alert-error" role="alert"><?php echo $this->session->flashdata('error'); ?></div>
                             <?php endif; ?>
                             <?php echo validation_errors('<div class="alert alert-error">', "</div>"); ?>
-                                <?php echo form_open('auth/create_user'); ?>
+                                <?php echo form_open('home/create_user'); ?>
                                 
                             <fieldset>  
                                 <div class="form-group">
@@ -367,7 +383,7 @@
                             </fieldset>
                                 <?php echo form_close(); ?>
                                 <?php echo $this->session->flashdata('msg'); ?>
-                             <a href='index.php#contact'><p>- close -</p></a>
+                             <a href='<?php base_url(); ?>home#contact'><p>- close -</p></a>
                         </div>
                     </div>
                    </div>
@@ -375,3 +391,10 @@
             </div>
         </div>
     </section>
+
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/default/js/lightbox.min.js"></script> 
+<?php if ($is_login_validation) { echo '<script>$("#openModal").get(0).scrollIntoView();</script>'; }?>
+<?php if ($is_contact_validation) { echo '<script>$("#contact").get(0).scrollIntoView();</script>'; }?>
+<?php if ($is_create_user_validation) { echo "#openModalSignUp"; }?>
+
+    

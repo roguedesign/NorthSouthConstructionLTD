@@ -1,3 +1,4 @@
+<?php if (!defined('BASEPATH'))exit('No direct script access allowed'); ?>
 <section id="about">
 <div class="container">
             <div class="row">

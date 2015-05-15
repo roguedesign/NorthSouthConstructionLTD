@@ -2,19 +2,9 @@
 
 class Project extends MY_Model {   
     
-    public $id;  
-   
+    public $id;   
 
-    
-    
-      
-    
-      
-
-     
-   
-    
-    
+    public $image_name;
     
     public $project_name;
     

@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined('BASEPATH'))exit('No direct script access allowed');
 
 class Contact extends CI_Controller {
     
@@ -15,27 +15,27 @@ class Contact extends CI_Controller {
         
 	$this->output->set_template('default');
 
-        $this->load->css('assets/themes/default/css/stylesheet.css');
-        $this->load->css('assets/themes/default/css/bootstrap.css');
-        $this->load->css('assets/themes/default/css/bootstrap.min.css');
-        $this->load->css("assets/themes/default/css/creative.css");
+        $this->load->css(base_url().'assets/themes/default/css/stylesheet.css');
+        $this->load->css(base_url().'assets/themes/default/css/bootstrap.css');
+        $this->load->css(base_url().'assets/themes/default/css/bootstrap.min.css');
+        $this->load->css(base_url()."assets/themes/default/css/creative.css");
         
 //        PLUGINS
-        $this->load->css("assets/themes/default/css/animate.min.css");
-        $this->load->css("assets/themes/default/css/lightbox.css");
+        $this->load->css(base_url()."assets/themes/default/css/animate.min.css");
+        $this->load->css(base_url()."assets/themes/default/css/lightbox.css");
         
 //        JS
-        $this->load->js("assets/themes/default/js/jquery-1.11.0.min.js");
-	$this->load->js("assets/themes/default/js/lightbox.min.js");
-        $this->load->js('assets/themes/default/js/bootstrap.js');
-        $this->load->js('assets/themes/default/js/bootstrap.min.js');
-        $this->load->js("assets/themes/default/js/cbpAnimatedHeader.js");
-        $this->load->js("assets/themes/default/js/classie.js");
-        $this->load->js("assets/themes/default/js/creative.js");
-        $this->load->js("assets/themes/default/js/jquery.easing.min.js");
-        $this->load->js("assets/themes/default/js/jquery.fittext.js");
-        $this->load->js("assets/themes/default/js/jquery.js");
-        $this->load->js("assets/themes/default/js/wow.min.js");
+        $this->load->js(base_url()."assets/themes/default/js/jquery-1.11.0.min.js");
+	$this->load->js(base_url()."assets/themes/default/js/lightbox.min.js");
+        $this->load->js(base_url().'assets/themes/default/js/bootstrap.js');
+        $this->load->js(base_url().'assets/themes/default/js/bootstrap.min.js');
+        $this->load->js(base_url()."assets/themes/default/js/cbpAnimatedHeader.js");
+        $this->load->js(base_url()."assets/themes/default/js/classie.js");
+        $this->load->js(base_url()."assets/themes/default/js/creative.js");
+        $this->load->js(base_url()."assets/themes/default/js/jquery.easing.min.js");
+        $this->load->js(base_url()."assets/themes/default/js/jquery.fittext.js");
+        $this->load->js(base_url()."assets/themes/default/js/jquery.js");
+        $this->load->js(base_url()."assets/themes/default/js/wow.min.js");
     }
     
     function index(){
@@ -77,11 +77,11 @@ class Contact extends CI_Controller {
             $this->email->message($message);
             if ($this->email->send()) {
                 $this->session->set_flashdata('msg', '<div class="alert alert-success text-center">Your enquiry has been sent successfully!</div>');
-                redirect('pages/home#contact');
+                redirect('home');
             }
             else {
                 $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">There has been an error sending this enquiry. Please try again later!</div>');
-                redirect('index.php#contact');
+                redirect('home');
         }
         
         

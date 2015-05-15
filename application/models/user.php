@@ -11,7 +11,7 @@ class User extends MY_Model {
     function validate() {
         
         
-	$user = $this->get_by(array('username' => $this->input->post('username'), 'password' => $this->input->post('password')));
+	$user = $this->get_by(array('username' => $this->input->post('username'), 'password' => md5($this->input->post('password'))));
 	if ($user) {
 	    return true;
 	}

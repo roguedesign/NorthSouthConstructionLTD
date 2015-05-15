@@ -6,43 +6,54 @@ class Home extends CI_Controller{
 	parent::__construct();
 	$this->load->helper('url');
         $this->load->helper('form');
+        $this->load->library('form_validation');
         $this->_init();
     }
     
 private function _init() {	
 	$this->output->set_template('default');
+        $this->load->model('Project');
 
-        $this->load->css('assets/themes/default/css/stylesheet.css');
-        $this->load->css('assets/themes/default/css/bootstrap.css');
-        $this->load->css('assets/themes/default/css/bootstrap.min.css');
-        $this->load->css("assets/themes/default/css/creative.css");
-        $this->load->css('assets/themes/default/css/bootstrap-theme.css');
-        $this->load->css('assets/themes/default/css/bootstrap-theme.min.css');
-        $this->load->css('assets/themes/default/css/creative.css');
+        $this->load->css(base_url().'assets/themes/default/css/stylesheet.css');
+        $this->load->css(base_url().'assets/themes/default/css/bootstrap.css');
+        $this->load->css(base_url().'assets/themes/default/css/bootstrap.min.css');
+        $this->load->css(base_url()."assets/themes/default/css/creative.css");
+        $this->load->css(base_url().'assets/themes/default/css/bootstrap-theme.css');
+        $this->load->css(base_url().'assets/themes/default/css/bootstrap-theme.min.css');
+        $this->load->css(base_url().'assets/themes/default/css/creative.css');
         
         
 //        PLUGINS
-        $this->load->css("assets/themes/default/css/animate.min.css");
-        $this->load->css("assets/themes/default/css/lightbox.css");
+        $this->load->css(base_url()."assets/themes/default/css/animate.min.css");
+        $this->load->css(base_url()."assets/themes/default/css/lightbox.css");
         
 //        JS
-        $this->load->js("assets/themes/default/js/jquery-1.11.0.min.js");
-	$this->load->js("assets/themes/default/js/lightbox.min.js");
-        $this->load->js('assets/themes/default/js/bootstrap.js');
-        $this->load->js('assets/themes/default/js/bootstrap.min.js');
-        $this->load->js("assets/themes/default/js/cbpAnimatedHeader.js");
-        $this->load->js("assets/themes/default/js/classie.js");
-        $this->load->js("assets/themes/default/js/creative.js");
-        $this->load->js("assets/themes/default/js/jquery.easing.min.js");
-        $this->load->js("assets/themes/default/js/jquery.fittext.js");
-        $this->load->js("assets/themes/default/js/jquery.js");
-        $this->load->js("assets/themes/default/js/wow.min.js");
-        $this->load->js("assets/themes/default/js/npm.js");
+        $this->load->js(base_url()."assets/themes/default/js/jquery-1.11.0.min.js");
+        
+	
+        $this->load->js(base_url().'assets/themes/default/js/bootstrap.js');
+        $this->load->js(base_url().'assets/themes/default/js/bootstrap.min.js');
+        $this->load->js(base_url()."assets/themes/default/js/cbpAnimatedHeader.js");
+        $this->load->js(base_url()."assets/themes/default/js/classie.js");
+        $this->load->js(base_url()."assets/themes/default/js/creative.js");
+        $this->load->js(base_url()."assets/themes/default/js/jquery.easing.min.js");
+        $this->load->js(base_url()."assets/themes/default/js/jquery.fittext.js");
+        $this->load->js(base_url()."assets/themes/default/js/jquery.js");
+        $this->load->js(base_url()."assets/themes/default/js/wow.min.js");
+        $this->load->js(base_url()."assets/themes/default/js/npm.js");
     }
     
     public function index() {
 	$this->_init();
-	$this->load->view('pages/home');
+	
+        
+        
+	$project = $this->Project->get_all();
+         
+        $this->load->view('pages/home', array(
+	    
+	    'projects' => $project, 'is_contact_validation' => false,  'is_login_validation' => false, 'is_create_user_validation' => false,
+	));
     }
     
 
@@ -68,12 +79,12 @@ private function _init() {
 	$this->load->model('User');
 	if ($this->User->validate()) {
 	    $this->_do_login();
-            if(!$is_ajax){
-                redirect('auth');
-            }
+//            if(!$is_ajax){
+//                redirect('auth');
+//            }
 	} else { 
 	    $this->session->set_flashdata('error', 'Incorrect username and/or password. Please try again.');
-	    redirect('index.php#openModal', 'refresh');
+	    redirect(base_url().'home#openModal', 'refresh');
 	}
     }
 
@@ -86,7 +97,7 @@ private function _init() {
 	    'is_logged_in' => true
 	);
 	$this->session->set_userdata($data);
-	redirect($this->load->view('pages/projects'));
+	redirect('projects');
     }  
 //    
 
@@ -94,6 +105,8 @@ private function _init() {
      * Create a new user and store in db. Used as part of Signup functionality.
      */
     public function create_user() {
+        $project = $this->Project->get_all();
+        
         
 	$this->load->library('form_validation');
         //$this->load->view('pages/projects');
@@ -104,9 +117,13 @@ private function _init() {
 	$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[4]');
 	$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
 	$this->form_validation->set_rules('password2', 'Password Confirmation', 'trim|required|matches[password]');
+        
+        	
 
+        
 	if ($this->form_validation->run() == FALSE) {
-	    $this->load->view('pages/home');
+            
+	    $this->load->view('pages/home', array('is_contact_validation' => false, 'projects' => $project, 'is_login_validation' => false, 'is_create_user_validation' => true));
 	} else {
 	    //Create new user
 	    $this->load->model('User');
@@ -119,12 +136,60 @@ private function _init() {
 	    if ($this->User->insert_obj() != null) {
 		$this->_do_login();
 		$this->session->set_flashdata('success', 'Account successfully created.');
-		redirect('projects', 'refresh');
+		redirect(base_url().'pages/projects', 'refresh');
 	    } else {
 		$this->session->set_flashdata('error', 'An error occurred and the account was not created.');
-		redirect('index.php#openModalSignUp');
+		redirect(base_url().'pages/home#openModalSignUp', 'refresh');
 	    }
 	}
     }
+    
+    public function contact() {
+        
+        $this->form_validation->set_rules('name', 'Name', 'trim|required|xxs_clean|callback_alpha_space_only');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('message', 'Message', 'trim|required|xss_clean');
+        
+        if ($this->form_validation->run() == FALSE) {
+            $project = $this->Project->get_all();
+            $this->load->view('pages/home', array('is_contact_validation' => true, 'projects' => $project, 'is_login_validation' => false, 'is_create_user_validation' => false));
+        }
+        else {
+            $name = $this->input->post('name');
+            $from_email = $this->input->post('email');
+            $message = $this->input->post('message');
+            
+            $to_email = 'manfacepie@gmail.com';
+            
+            $config = array(
+            'protocol'   => 'smtp',
+            'stmp_host' => 'ssl://smtp.googlemail.com',
+            'stmp_port' => '465',
+            'stmp_user' => '',
+            'stmp_password' => '',
+            'mailtype' => 'iso-8859-1',
+            'wordwrap' => true,
+            'newline' => '\r\n',
+            'stmp_crypto' => 'ssl'
+            );    
+            
+            
+            $this->load->library('email', $config);
+            
+            
+            $this->email->from($from_email, $name);
+            $this->email->to($to_email);
+            $this->email->message($message);
+            if ($this->email->send()) {
+                $this->session->set_flashdata('msg', '<div class="alert alert-success text-center">Your enquiry has been sent successfully!</div>');
+                redirect('home');
+            }
+            else {
+                $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">There has been an error sending this enquiry. Please try again later!</div>');
+                redirect('home');
+            }
+        }
+    }
+    
+    
 }
-
